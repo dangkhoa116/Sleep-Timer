@@ -32,16 +32,16 @@
         app:srcCompat="@android:drawable/screen_background_dark_transparent" />
 
     <Button
-        android:tag="10"
         android:id="@+id/plus10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="36dp"
         android:alpha="0.25"
         android:color="#66FF0000"
-        android:text="+10"
         android:onClick="controlMinutes"
+        android:tag="10"
+        android:text="+10"
         app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
         app:layout_constraintEnd_toEndOf="@+id/sleepyBackground" />
 
@@ -109,6 +109,7 @@
         android:color="#66FF0000"
         android:text="Start"
         android:textSize="24sp"
+        android:onClick="startCountDown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,8 +117,8 @@
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
         android:id="@+id/circularProgressbar"
-        android:layout_width="326dp"
-        android:layout_height="291dp"
+        android:layout_width="294dp"
+        android:layout_height="298dp"
         android:layout_marginTop="8dp"
         android:visibility="invisible"
         app:cpb_background_progressbar_color="#070707"
@@ -126,20 +127,21 @@
         app:cpb_progressbar_width="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/darkBackground"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/darkBackground"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintVertical_bias="0.163" />
 
     <Button
-        android:tag="-10"
         android:id="@+id/minus10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="-10"
+        android:layout_marginBottom="36dp"
         android:alpha="0.25"
-        android:onClick="controlMinutes"
         android:color="#66FF0000"
+        android:onClick="controlMinutes"
+        android:tag="-10"
+        android:text="-10"
         app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
         app:layout_constraintStart_toStartOf="@+id/sleepyBackground" />
 
@@ -168,5 +170,18 @@
         android:onClick="controlMinutes"
         app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
         app:layout_constraintStart_toStartOf="@+id/sleepyBackground" />
+
+    <Button
+        android:id="@+id/endBnt"
+        android:layout_width="160dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="160dp"
+        android:alpha="0.25"
+        android:color="#66FF0000"
+        android:text="End"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/startBnt"
+        app:layout_constraintStart_toStartOf="@+id/startBnt"
+        app:layout_constraintTop_toBottomOf="@+id/circularProgressbar" />
 
 </android.support.constraint.ConstraintLayout>
