@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/sleepyBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sleepy" />
+
+    <ImageView
+        android:id="@+id/darkBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha=".75"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/screen_background_dark_transparent" />
+
+    <Button
+        android:tag="10"
+        android:id="@+id/plus10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="10dp"
+        android:alpha="0.25"
+        android:color="#66FF0000"
+        android:text="+10"
+        android:onClick="controlMinutes"
+        app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
+        app:layout_constraintEnd_toEndOf="@+id/sleepyBackground" />
+
+    <TextView
+        android:id="@+id/minutesLeft"
+        android:layout_width="108dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginBottom="344dp"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="72sp"
+        app:layout_constraintBottom_toTopOf="@+id/startBnt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/minutesText"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="Minutes"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/darkBackground"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="@+id/darkBackground"
+        app:layout_constraintTop_toBottomOf="@+id/minutesLeft" />
+
+    <Button
+        android:tag="5"
+        android:id="@+id/plusMinutesBnt"
+        android:layout_width="110dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="64dp"
+        android:alpha="0.25"
+        android:color="#66FF0000"
+        android:onClick="controlMinutes"
+        android:text="+5"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/minutesLeft" />
+
+    <Button
+        android:tag="-5"
+        android:id="@+id/minusMinutesBnt"
+        android:layout_width="110dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="64dp"
+        android:alpha="0.25"
+        android:color="#66FF0000"
+        android:onClick="controlMinutes"
+        android:text="-5"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/minutesLeft" />
+
+    <Button
+        android:id="@+id/startBnt"
+        android:layout_width="220dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="79dp"
+        android:alpha="0.25"
+        android:color="#66FF0000"
+        android:text="Start"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minutesLeft" />
+
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:id="@+id/circularProgressbar"
+        android:layout_width="326dp"
+        android:layout_height="291dp"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        app:cpb_background_progressbar_color="#070707"
+        app:cpb_background_progressbar_width="5dp"
+        app:cpb_progressbar_color="#A7A1A0"
+        app:cpb_progressbar_width="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/darkBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/darkBackground"
+        app:layout_constraintVertical_bias="0.131" />
+
+    <Button
+        android:tag="-10"
+        android:id="@+id/minus10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="-10"
+        android:alpha="0.25"
+        android:onClick="controlMinutes"
+        android:color="#66FF0000"
+        app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
+        app:layout_constraintStart_toStartOf="@+id/sleepyBackground" />
+
+    <Button
+        android:tag="1"
+        android:id="@+id/plus1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="168dp"
+        android:alpha="0.25"
+        android:color="#66FF0000"
+        android:text="+1"
+        android:onClick="controlMinutes"
+        app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
+        app:layout_constraintEnd_toEndOf="@+id/sleepyBackground" />
+
+    <Button
+        android:tag="-1"
+        android:id="@+id/minus1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="168dp"
+        android:alpha="0.25"
+        android:color="#66FF0000"
+        android:text="-1"
+        android:onClick="controlMinutes"
+        app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
+        app:layout_constraintStart_toStartOf="@+id/sleepyBackground" />
+
+</android.support.constraint.ConstraintLayout>
