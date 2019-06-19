@@ -73,7 +73,6 @@
         app:layout_constraintTop_toBottomOf="@+id/minutesLeft" />
 
     <Button
-        android:tag="5"
         android:id="@+id/plusMinutesBnt"
         android:layout_width="110dp"
         android:layout_height="80dp"
@@ -81,13 +80,13 @@
         android:alpha="0.25"
         android:color="#66FF0000"
         android:onClick="controlMinutes"
+        android:tag="5"
         android:text="+5"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/minutesLeft" />
 
     <Button
-        android:tag="-5"
         android:id="@+id/minusMinutesBnt"
         android:layout_width="110dp"
         android:layout_height="80dp"
@@ -95,6 +94,7 @@
         android:alpha="0.25"
         android:color="#66FF0000"
         android:onClick="controlMinutes"
+        android:tag="-5"
         android:text="-5"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,17 +103,17 @@
     <Button
         android:id="@+id/startBnt"
         android:layout_width="220dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="79dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="48dp"
         android:alpha="0.25"
         android:color="#66FF0000"
+        android:onClick="startCountDown"
         android:text="Start"
         android:textSize="24sp"
-        android:onClick="startCountDown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/minutesLeft" />
+        app:layout_constraintTop_toBottomOf="@+id/extendBnt" />
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
         android:id="@+id/circularProgressbar"
@@ -146,28 +146,28 @@
         app:layout_constraintStart_toStartOf="@+id/sleepyBackground" />
 
     <Button
-        android:tag="1"
         android:id="@+id/plus1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="168dp"
         android:alpha="0.25"
         android:color="#66FF0000"
-        android:text="+1"
         android:onClick="controlMinutes"
+        android:tag="1"
+        android:text="+1"
         app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
         app:layout_constraintEnd_toEndOf="@+id/sleepyBackground" />
 
     <Button
-        android:tag="-1"
         android:id="@+id/minus1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="168dp"
         android:alpha="0.25"
         android:color="#66FF0000"
-        android:text="-1"
         android:onClick="controlMinutes"
+        android:tag="-1"
+        android:text="-1"
         app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
         app:layout_constraintStart_toStartOf="@+id/sleepyBackground" />
 
@@ -179,9 +179,26 @@
         android:alpha="0.25"
         android:color="#66FF0000"
         android:text="End"
+        android:onClick="endButton"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/startBnt"
         app:layout_constraintStart_toStartOf="@+id/startBnt"
         app:layout_constraintTop_toBottomOf="@+id/circularProgressbar" />
+
+    <Button
+        android:id="@+id/extendBnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="467dp"
+        android:layout_marginBottom="98dp"
+        android:alpha="0.25"
+        android:color="#66FF0000"
+        android:text="Extend"
+        android:onClick="extendButton"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/startBnt"
+        app:layout_constraintStart_toStartOf="@+id/endBnt"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
