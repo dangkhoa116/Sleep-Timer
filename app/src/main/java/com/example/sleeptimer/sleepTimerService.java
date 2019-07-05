@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.widget.Toast;
 
 import com.example.practiceui2.R;
 
@@ -31,6 +32,7 @@ public class sleepTimerService extends Service {
                 .setContentText(minLeft)
                 .setSmallIcon(R.raw.ic_launcherweb)
                 .setContentIntent(pendingIntent)
+                .setOnlyAlertOnce(true)
                 .build();
         startForeground(1, notification);
 
@@ -52,6 +54,6 @@ public class sleepTimerService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //Toast.makeText(this,"Service Stopped",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Service Stopped",Toast.LENGTH_LONG).show();
     }
 }

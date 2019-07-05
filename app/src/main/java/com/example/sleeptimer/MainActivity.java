@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         startBnt = findViewById(R.id.startBnt);
         endBnt = findViewById(R.id.endBnt);
         extendBnt = findViewById(R.id.extendBnt);
-
     }
 
     public void controlMinutes(View view) {
@@ -88,14 +87,14 @@ public class MainActivity extends AppCompatActivity {
     }
     public void myCountDownTimer(int minLeft)
     {
-        startService();
+
         myCountDownTimer = new CountDownTimer(minLeft * 60000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 circularProgressBar.setProgress(millisUntilFinished / 1000);
                 minutesLeft.setText(Long.toString(millisUntilFinished / 60000));
+                startService();
             }
-
             @Override
             public void onFinish() {
                 myCountDownTimer.cancel();
@@ -129,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     public void startService() {
         minLeft = Integer.parseInt((String) minutesLeft.getText());
         Intent serviceIntent = new Intent(this,sleepTimerService.class);
-        serviceIntent.putExtra("minLeft",minLeft+" minutes left");
+        serviceIntent.putExtra("minLeft",minLeft +" minutes left");
         //serviceIntent.putExtra("inputExtra",(minLeft)+" minutes left");
         ContextCompat.startForegroundService(this,serviceIntent);
 
