@@ -45,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
         int tapped = Integer.parseInt(bnt.getTag().toString());
         minLeft = Integer.parseInt((String) minutesLeft.getText());
         if (tapped + minLeft < 1) {
-            return;
+            minutesLeft.setText("1");
         }
-        int buff = minLeft + tapped;
-        minutesLeft.setText(Integer.toString(buff));
+        else
+        {
+            int buff = minLeft + tapped;
+            minutesLeft.setText(Integer.toString(buff));
+        }
+
     }
 
     public void disappearedButton() {
