@@ -123,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void turnOffAudio() {
         am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        am.setStreamMute(AudioManager.STREAM_MUSIC, true);
+        am.requestAudioFocus(null,AudioManager.STREAM_MUSIC,AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
     }
     public void startService() {
         minLeft = Integer.parseInt((String) minutesLeft.getText());
