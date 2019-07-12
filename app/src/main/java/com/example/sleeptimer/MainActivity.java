@@ -2,6 +2,7 @@ package com.example.sleeptimer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected CountDownTimer myCountDownTimer;
     protected AudioManager am;
     protected long progress;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         startBnt = findViewById(R.id.startBnt);
         endBnt = findViewById(R.id.endBnt);
         extendBnt = findViewById(R.id.extendBnt);
+        sharedPreferences = getSharedPreferences("com.example.sleeptimer", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        minutesLeft.setText(Integer.toString(sharedPreferences.getInt("minLeft",1)));
+
     }
 
     public void controlMinutes(View view) {
@@ -46,11 +53,15 @@ public class MainActivity extends AppCompatActivity {
         minLeft = Integer.parseInt((String) minutesLeft.getText());
         if (tapped + minLeft < 1) {
             minutesLeft.setText("1");
+            editor.putInt("minLeft",1);
+            editor.commit();
         }
         else
         {
             int buff = minLeft + tapped;
             minutesLeft.setText(Integer.toString(buff));
+            editor.putInt("minLeft",buff);
+            editor.commit();
         }
 
     }
@@ -91,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void myCountDownTimer(int minLeft)
     {
-
         myCountDownTimer = new CountDownTimer(minLeft * 60000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -112,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     public void endButton(View view) {
         myCountDownTimer.cancel();
         appearButton();
-        minutesLeft.setText("1");
+        minutesLeft.setText(Integer.toString(sharedPreferences.getInt("minLeft",1)));
         stopService();
 
     }
@@ -124,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
         myCountDownTimer(minLeft);
     }
-
     public void turnOffAudio() {
         am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         am.requestAudioFocus(null,AudioManager.STREAM_MUSIC,AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
@@ -141,6 +150,11 @@ public class MainActivity extends AppCompatActivity {
     public void stopService() {
         Intent serviceIntent = new Intent(this, sleepTimerService.class);
         stopService(serviceIntent);
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
     }
 }
 

@@ -22,6 +22,11 @@ public class sleepTimerService extends Service {
     }
     public int onStartCommand(Intent intent,int flags,int startId)
     {
+        /*Intent extendIntent = new Intent(this,MainActivity.class);
+        extendIntent.putExtra("Extend","extendButton");
+        Intent stopIntent = new Intent(this,MainActivity.class);
+        stopIntent.putExtra("Stop","endButton");*/
+
         String minLeft = intent.getStringExtra("minLeft");
         createNotificationChannel();
         Intent notificationIntent = new Intent(this,MainActivity.class);
@@ -33,6 +38,8 @@ public class sleepTimerService extends Service {
                 .setSmallIcon(R.raw.ic_launcherweb)
                 .setContentIntent(pendingIntent)
                 .setOnlyAlertOnce(true)
+                .addAction(R.raw.extendicon,"Extend",pendingIntent)
+                .addAction(R.raw.clearicon,"Stop",pendingIntent)
                 .build();
         startForeground(1, notification);
 
@@ -54,6 +61,6 @@ public class sleepTimerService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this,"Service Stopped",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Service Stopped",Toast.LENGTH_SHORT).show();
     }
 }
