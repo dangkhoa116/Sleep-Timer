@@ -1,9 +1,11 @@
 package com.example.sleeptimer;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
+import android.net.wifi.WifiManager;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -115,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
                 appearButton();
                 minutesLeft.setText("1");
                 turnOffAudio();
+                turnOffBluetooth();
+                turnOffWifi();
                 stopService();
             }
         }.start();
@@ -137,7 +141,18 @@ public class MainActivity extends AppCompatActivity {
     public void turnOffAudio() {
         am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         am.requestAudioFocus(null,AudioManager.STREAM_MUSIC,AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-
+    }
+    public void turnOffBluetooth()
+    {
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter.isEnabled()) {
+            mBluetoothAdapter.disable();
+        }
+    }
+    public void turnOffWifi()
+    {
+        WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        wifi.setWifiEnabled(false);
     }
     public void startService() {
         minLeft = Integer.parseInt((String) minutesLeft.getText());
@@ -147,6 +162,12 @@ public class MainActivity extends AppCompatActivity {
         ContextCompat.startForegroundService(this,serviceIntent);
 
     }
+    public void openSetting(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, setting.class);
+        startActivity(intent);
+    }
+
     public void stopService() {
         Intent serviceIntent = new Intent(this, sleepTimerService.class);
         stopService(serviceIntent);
