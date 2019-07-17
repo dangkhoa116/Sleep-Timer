@@ -37,7 +37,6 @@ public class sleepTimerService extends Service {
                 .setContentText(minLeft)
                 .setSmallIcon(R.raw.ic_launcherweb)
                 .setContentIntent(pendingIntent)
-                .setOnlyAlertOnce(true)
                 .addAction(R.raw.extendicon,"Extend",pendingIntent)
                 .addAction(R.raw.clearicon,"Stop",pendingIntent)
                 .build();
@@ -51,7 +50,7 @@ public class sleepTimerService extends Service {
             NotificationChannel serviceChanel = new NotificationChannel(
                     CHANNEL_ID,
                     "Sleep Timer",
-                    NotificationManager.IMPORTANCE_DEFAULT
+                    NotificationManager.IMPORTANCE_LOW
             );
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(serviceChanel);

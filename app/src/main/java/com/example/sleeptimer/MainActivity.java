@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected CountDownTimer myCountDownTimer;
     protected AudioManager am;
     protected long progress;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+    protected SharedPreferences sharedPreferences;
+    protected SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,9 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 myCountDownTimer.cancel();
                 appearButton();
                 minutesLeft.setText("1");
-                turnOffAudio();
-                turnOffBluetooth();
-                turnOffWifi();
+                getCheckAction();
                 stopService();
             }
         }.start();
@@ -159,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
         minLeft = Integer.parseInt((String) minutesLeft.getText());
         Intent serviceIntent = new Intent(this,sleepTimerService.class);
         serviceIntent.putExtra("minLeft",minLeft +" minutes left");
-        //serviceIntent.putExtra("inputExtra",(minLeft)+" minutes left");
         ContextCompat.startForegroundService(this,serviceIntent);
 
     }
@@ -186,6 +183,27 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+    public void getCheckAction()
+    {
+        sharedPreferences = getSharedPreferences("com.example.sleeptimer", Context.MODE_PRIVATE);
+        boolean music = sharedPreferences.getBoolean("music",false);
+        boolean wifi = sharedPreferences.getBoolean("wifi",false);
+        boolean bluetooth = sharedPreferences.getBoolean("bluetooth",false);
+        if (music)
+        {
+            turnOffAudio();
+        }
+        if (wifi)
+        {
+            turnOffWifi();
+        }
+        if (bluetooth)
+        {
+            turnOffBluetooth();
+        }
+
+
     }
 }
 
